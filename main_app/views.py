@@ -8,67 +8,7 @@ from .models import Expense
 from django.http import HttpResponse 
 from django.shortcuts import render
 
-from django.utils import timezone # 6, see if you spend more or less
-from datetime import timedelta    # 6.
-
-
-    # <!-- 6, see if you spend more or less  -->
-@login_required(login_url='/login/')
-def expenses(request):
-    # Create a new expense (same as before)
-    if request.method == 'POST':
-        data = request.POST
-        salary = float(data.get('salary', 0))
-        name = data.get('name')
-        price = float(data.get('price', 0))
-
-        Expense.objects.create(
-            user=request.user,
-            salary=salary,
-            name=name,
-            price=price,
-        )
-        return redirect('/')
-
-    # Filter by current and previous month
-    now = timezone.now()
-    start_of_month = now.replace(day=1)
-    start_of_last_month = (start_of_month - timedelta(days=1)).replace(day=1)
-    end_of_last_month = start_of_month - timedelta(days=1)
-
-    this_month_expenses = Expense.objects.filter(user=request.user, created_at__gte=start_of_month)
-    last_month_expenses = Expense.objects.filter(user=request.user, created_at__range=[start_of_last_month, end_of_last_month])
-
-    total_this_month = sum(e.price for e in this_month_expenses)
-    total_last_month = sum(e.price for e in last_month_expenses)
-
-    comparison_message = ""
-    if total_last_month:
-        difference = total_this_month - total_last_month
-        if difference > 0:
-            comparison_message = f"You spent ${difference:.2f} more than last month."
-        elif difference < 0:
-            comparison_message = f"You saved ${abs(difference):.2f} compared to last month."
-        else:
-            comparison_message = "Your spending is exactly the same as last month."
-    else:
-        comparison_message = "No data from last month to compare."
-
-    queryset = Expense.objects.filter(user=request.user)
-
-    if request.GET.get('search'):
-        queryset = queryset.filter(name__icontains=request.GET.get('search'))
-
-    total_sum = sum(exp.price for exp in queryset)
-
-    context = {
-        'expenses': queryset,
-        'total_sum': total_sum,
-        'comparison_message': comparison_message,
-    }
-    return render(request, 'expenses.html', context)
-
-    # <!-- 6, see if you spend more or less  ENDS HERE-->
+ 
 
 
 

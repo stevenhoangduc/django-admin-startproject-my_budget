@@ -4,13 +4,7 @@
 <div class="container mt-5 col-md-8">
     <h2 class="text-center mb-4">Track Your Expenses</h2>
 
-    <!-- 6, see if you spend more or less  -->
-    {% if comparison_message %}
-  <div class="alert alert-info text-center shadow-sm">
-    {{ comparison_message }}
-  </div>
-{% endif %}
-  <!-- 6M SEE IF YOU SPEND MORE OR LESS ENDS HERE -->
+  
 
 
     <!-- Search Bar -->
@@ -79,6 +73,7 @@
                         
                     </td>
                 </tr>
+                
                 {% empty %}
                 <tr>
                     <td colspan="4" class="text-center">No expenses found.</td>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from django.utils import timezone # 6, see if you spend more or less.
+
 
 
 
@@ -13,7 +13,7 @@ class Expense(models.Model):
     salary = models.IntegerField(default=0)
     name = models.CharField(max_length=100, default='something')
     price = models.FloatField(default=0.0)
-    created_at = models.DateTimeField(default=timezone.now) # 6.
+   
 
     
 
