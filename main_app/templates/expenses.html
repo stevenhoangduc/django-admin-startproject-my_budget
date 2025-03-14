@@ -1,54 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="container mt-5 col-md-8">
     <h2 class="text-center mb-4">Track Your Expenses</h2>
 
-  
-
-
     <!-- Search Bar -->
- <!-- Search Bar -->
- <form method="GET" class="mb-4">
-    <div class="input-group">
-      <input type="text" name="search" class="form-control search-input" placeholder="Search expenses..." value="{{ request.GET.search }}" autocomplete="off">
-      <button class="btn btn-search" type="submit">
-        <i class="fas fa-search me-1"></i> Search
-      </button>
-    </div>
-  </form>
-  
-
+    <form method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control search-input" placeholder="Search expenses..." value="{{ request.GET.search }}" autocomplete="off">
+            <button class="btn btn-search" type="submit">
+                <i class="fas fa-search me-1"></i> Search
+            </button>
+        </div>
+    </form>
 
     <!-- Add Expense Form -->
     <form method="POST" class="card p-4 shadow mb-5">
         {% csrf_token %}
         <div class="form-group mb-3">
-            <!-- adding the for="salary" infront SECOND DAY -->
             <label for="salary">Salary</label>
-            <!-- addin autocomplete=off at the end second day -->
-            <input type="number" id="salary" sname="salary tep="0.01" class="form-control" required autocomplete="off">
+            <input type="number" id="salary" name="salary" step="0.01" class="form-control" required autocomplete="off">
         </div>
         <div class="form-group mb-3">
-             <!-- adding the for="name" infront SECOND DAY -->
-             <label for="name">Expense Name</label>
-            <!-- addin autocomplete=off at the end second day -->
+            <label for="name">Expense Name</label>
             <input type="text" id="name" name="name" class="form-control" required autocomplete="off">
         </div>
         <div class="form-group mb-3">
-            <!-- adding the for="price" infront SECOND DAY -->
             <label for="price">Price</label>
-            <!-- addin autocomplete=off at the end second day -->
             <input type="number" id="price" name="price" step="0.01" class="form-control" required autocomplete="off">
         </div>
         <button type="submit" class="btn btn-neutral w-100">Add Expense</button>
-        <!-- <button type="submit" class="btn btn-success w-100">Add Expense</button> -->
     </form>
 
     <!-- Display Table -->
     <div class="card p-4 shadow">
-        <h5>Total Expenses: ${{ total_sum|floatformat:2 }}
-        </h5>
+        <h5>Total Expenses: ${{ total_sum|floatformat:2 }}</h5>
         <table class="table table-striped mt-3">
             <thead>
                 <tr>
@@ -63,17 +50,12 @@
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ expense.name }}</td>
-                    <td>${{ expense.price|floatformat:2 }}
-                    </td>
+                    <td>${{ expense.price|floatformat:2 }}</td>
                     <td>
-
                         <a href="{% url 'update_expense' expense.id %}" class="btn btn-sm btn-update">Update</a>
                         <a href="{% url 'delete_expense' expense.id %}" class="btn btn-sm btn-delete">Delete</a>
-
-                        
                     </td>
                 </tr>
-                
                 {% empty %}
                 <tr>
                     <td colspan="4" class="text-center">No expenses found.</td>
@@ -82,6 +64,34 @@
             </tbody>
         </table>
     </div>
+
+
+    <!-- Chart Section -->
+   <!-- Chart Section -->
+   <div class="chart-container mt-5">
+    <h5 class="text-center mb-3">Monthly Expenses Overview</h5>
+    <canvas id="expenseChart" height="150"></canvas>
+  
+    <!-- Safely pass JSON data to JavaScript -->
+    {{ chart_labels|json_script:"labels-data" }}
+    {{ chart_data|json_script:"values-data" }}
+  </div>
+  
+
+  <!-- Debug output (optional, remove in production) -->
+  <!-- <p><strong>Chart Labels (Debug):</strong> {{ chart_labels }}</p>
+  <p><strong>Chart Data (Debug):</strong> {{ chart_data }}</p> -->
+  
+  
+  
+
 </div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Your custom chart logic -->
+<script src="{% static 'js/chart.js' %}"></script>
+
 
 {% endblock %}

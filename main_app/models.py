@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# bar chart STARTS
+from django.utils import timezone
+
+
 
 
 
@@ -13,6 +17,14 @@ class Expense(models.Model):
     salary = models.IntegerField(default=0)
     name = models.CharField(max_length=100, default='something')
     price = models.FloatField(default=0.0)
+    # bar chart Starts
+    # in models.py
+    # created_at = models.DateTimeField(auto_now_add=True) LATER WE CAN SWITCH THIS BACK ON (COMMENT OUT THE NEXT LINE) IF WE DON'T WANT MANUAL DATE TAMPERING/CHANGING
+    created_at = models.DateTimeField(auto_now_add=False, default=timezone.now)
+
+
+
+    # bar chart ENDS
    
 
     
