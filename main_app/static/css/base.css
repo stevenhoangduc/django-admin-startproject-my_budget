@@ -178,7 +178,48 @@
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Dark mode base styles */
+/* 🌙 Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
 
+body.dark-mode .card,
+body.dark-mode .form-control,
+body.dark-mode .table,
+body.dark-mode .input-group {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 2px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .navbar {
+  background-color: #222 !important;
+}
+
+body.dark-mode .navbar .nav-link,
+body.dark-mode .navbar .navbar-brand {
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .btn {
+  background-color: #c92034;
+  color: white;
+}
+
+body.dark-mode .btn:hover {
+  background-color: #a61226;
+}
+
+/* Optional: dark input borders */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  border: 1px solid #888;
+}
+
+/* DARK MODE ENDS */
 
 
 
