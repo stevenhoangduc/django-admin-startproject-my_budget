@@ -1,0 +1,15 @@
+.text {
+    color: green;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.ok {
+    color: white;
+    text-decoration: none;
+}
+
+.ok:hover {
+    color: white;
+    text-decoration: none;
+}

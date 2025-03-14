@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5 col-md-8">
+    <h2 class="text-center mb-4">Track Your Expenses</h2>
+
+    <!-- 6, see if you spend more or less  -->
+    {% if comparison_message %}
+  <div class="alert alert-info text-center shadow-sm">
+    {{ comparison_message }}
+  </div>
+{% endif %}
+  <!-- 6M SEE IF YOU SPEND MORE OR LESS ENDS HERE -->
+
+
+    <!-- Search Bar -->
+ <!-- Search Bar -->
+ <form method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="search" class="form-control search-input" placeholder="Search expenses..." value="{{ request.GET.search }}" autocomplete="off">
+      <button class="btn btn-search" type="submit">
+        <i class="fas fa-search me-1"></i> Search
+      </button>
+    </div>
+  </form>
+  
+
+
+    <!-- Add Expense Form -->
+    <form method="POST" class="card p-4 shadow mb-5">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <!-- adding the for="salary" infront SECOND DAY -->
+            <label for="salary">Salary</label>
+            <!-- addin autocomplete=off at the end second day -->
+            <input type="number" id="salary" sname="salary tep="0.01" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group mb-3">
+             <!-- adding the for="name" infront SECOND DAY -->
+             <label for="name">Expense Name</label>
+            <!-- addin autocomplete=off at the end second day -->
+            <input type="text" id="name" name="name" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group mb-3">
+            <!-- adding the for="price" infront SECOND DAY -->
+            <label for="price">Price</label>
+            <!-- addin autocomplete=off at the end second day -->
+            <input type="number" id="price" name="price" step="0.01" class="form-control" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-neutral w-100">Add Expense</button>
+        <!-- <button type="submit" class="btn btn-success w-100">Add Expense</button> -->
+    </form>
+
+    <!-- Display Table -->
+    <div class="card p-4 shadow">
+        <h5>Total Expenses: ${{ total_sum|floatformat:2 }}
+        </h5>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Reason</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ expense.name }}</td>
+                    <td>${{ expense.price|floatformat:2 }}
+                    </td>
+                    <td>
+
+                        <a href="{% url 'update_expense' expense.id %}" class="btn btn-sm btn-update">Update</a>
+                        <a href="{% url 'delete_expense' expense.id %}" class="btn btn-sm btn-delete">Delete</a>
+
+                        
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No expenses found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

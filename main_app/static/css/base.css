@@ -1,0 +1,238 @@
+/* base.css */
+
+/* Navbar Styles */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff !important;
+  }
+  
+  .navbar-dark .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-dark .nav-link:hover {
+    color: #0dcaf0 !important;
+  }
+  
+  /* Body background */
+  body {
+    background-color: #f8f9fa;
+  }
+  
+  /* Card/form styling */
+  .card {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  /* mobile adjustments📱 SECOND DAY */
+
+  /*  Custom box style */
+  .card, .form-control, .table{
+  background: rgb(166, 170, 174); /* cool neutral background */
+  box-shadow: 2px 4px 6px rgb(203, 32, 52); /*  red-colored shadow */
+  border-radius: 8px;
+  }
+  
+  
+  /*  Custom red button style */
+.btn {
+  background-color: rgb(203, 32, 52);
+  color: white;
+  border: none;
+  box-shadow: 2px 4px 6px rgb(203, 32, 52);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 50px; /* pill shape */
+
+}
+
+/* 🔁 Hover effect */
+.btn:hover {
+  background-color: rgb(180, 0, 36);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 6px white;
+  border-radius: 50px; /* pill shape */
+
+}
+
+/* Small buttons (like Update/Delete) */
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 50px; /* pill shape */
+
+}
+
+.btn:active {
+  transform: scale(0.97);
+  border-radius: 50px; /* pill shape */
+
+}
+
+/* 🔘 Neutral Gray Button Style (Add Expense) */
+.btn-neutral {
+  background-color: #adb5bd; /* neutral gray */
+  color: white;
+  border: none;
+  box-shadow: 2px 4px 6px #ffffff; /* soft white shadow */
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 50px; /* pill shape */
+
+}
+
+.btn-neutral:hover {
+  background-color: #6c757d;
+  transform: translateY(-1px);
+  color: white;
+  border-radius: 50px; /* pill shape */
+
+}
+
+ /* Override just the input-group */
+ .input-group {
+  background: transparent;
+  box-shadow: none;
+  
+}
+
+/* 🔍 Clean white Search button with neutral gray border + shadow */
+.btn-search {
+  background-color: white;         /* white button */
+  color: rgb(203, 32, 52);         /* red text or icon for contrast */
+  border: 1px solid #ced4da;       /* optional soft border */
+  border-radius: 50px;             /* pill shape */
+  padding: 10px 16px;
+  font-weight: 500;
+  box-shadow: 2px 4px 6px rgb(203, 32, 52); /* 🔴 your red shadow */
+  transition: all 0.2s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.btn-search:hover {
+  background-color: #f8f9fa;       /* subtle hover effect */
+  color: rgb(180, 0, 36);          /* darker red text on hover */
+  box-shadow: 2px 4px 8px rgb(180, 0, 36); /* deeper red glow on hover */
+}
+
+/* make all buttons pills-shapeed once added this code */
+.btn {
+  border-radius: 50px !important;
+}
+
+/* this gives every button a subtle press-in effect when clicked */
+/* Click feedback animation */
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ✏️ Update Button Style */
+.btn-update {
+  background-color: #adb5bd;  /* Bootstrap warning yellow */
+  color: black;
+  box-shadow: 2px 4px 6px rgb(203, 32, 52); /* your red shadow */
+  border: none;
+  border-radius: 50px;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-update:hover {
+  background-color: rgb(203, 32, 52); 
+  transform: translateY(-1px);
+}
+
+
+/* 🗑️ Delete Button Style */
+.btn-delete {
+  background-color: #adb5bd; 
+  color: white;
+  box-shadow: 2px 4px 6px rgb(203, 32, 52); 
+  border: none;
+  border-radius: 50px;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: rgb(180, 0, 36);
+  transform: translateY(-1px);
+}
+
+/* this will add smoothness press or tap effect on click. */
+.btn-search:active,
+.btn-update:active,
+.btn-delete:active {
+  transform: scale(0.97);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 6, SEE IF YOU SPEND MORE OR LESS  */
+.alert-info {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+  font-weight: 500;
+  border: 1px solid #bee5eb;
+  border-radius: 8px;
+}
+/* 6, SEE IF YOU SPEND MORE OR LESS ENDS HERE */
+
+
+
+
+
+
+
+  
+/* @media (max-width: 576px) { */
+  /* Smaller headings on mobile */
+  /* h1, h2, h3 {
+    font-size: 1.3rem;
+  } */
+
+  /* Reduce form padding */
+  /* .card {
+    padding: 1rem !important;
+  } */
+
+  /* Stretch buttons to full width */
+  /* .btn, .btn-block {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  } */
+
+  /* Slightly smaller input fields */
+  /* input, select, textarea {
+    font-size: 1rem;
+    padding: 10px;
+  } */
+
+  /* Table text sizing */
+  /* table td, table th {
+    font-size: 0.9rem;
+  } */
+
+  /* Center total text */
+  /* .expense-total, h5 {
+    text-align: center;
+    font-size: 1.1rem;
+  } */
+
+  /* Stack nav links vertically (optional tweak if you build a sidebar later) */
+  /* .navbar-nav {
+    text-align: center;
+  }
+} */
+

@@ -1,0 +1,24 @@
+.auth-box {
+    max-width: 400px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(203, 32, 52, 0.3);
+  }
+
+  /* auth.css */
+  .styled-checkbox {
+    transform: scale(1.3);
+    accent-color: rgb(203, 32, 52);
+    box-shadow: 2px 4px 6px rgb(203, 32, 52);
+    cursor: pointer;
+  }
+  
+  
+  
+  /* Optional padding tweak for mobile */
+  @media (max-width: 576px) {
+    .auth-box {
+      padding: 2rem 1rem;
+    }
+  }
+  

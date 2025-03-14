@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+<div class="about-container shadow-lg p-5 mt-5 mx-auto">
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <img src="{% static 'images/aboutpage.png' %}" alt="About Icon" class="about-img me-4">
+    <h1 class="about-title">💡 About Saving Money for Rainy Days</h1>
+  </div>
+  <p class="lead text-center">
+    This expense tracker is designed to help you take control of your finances by building better habits. 
+    Smart budgeting creates a cushion for life’s unexpected moments. 
+    Even small, consistent savings today can make a big difference tomorrow.
+  </p>
+</div>
+{% endblock %}

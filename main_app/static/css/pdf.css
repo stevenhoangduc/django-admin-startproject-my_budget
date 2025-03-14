@@ -1,0 +1,57 @@
+/* ✍️ About Page Styling (PDF-inspired) */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .about-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgb(166, 170, 174); /* same neutral gray */
+    box-shadow: 2px 4px 6px rgb(203, 32, 52); /* red shadow */
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .about-container img {
+    width: 140px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem auto;
+    border-radius: 8px;
+  }
+  
+  .about-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(203, 32, 52); /* theme red */
+    margin-bottom: 1rem;
+  }
+  
+  .about-container p {
+    font-size: 1.1rem;
+    color: #333;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(203, 32, 52, 0.2);
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .about-container {
+      padding: 1rem;
+      margin: 1rem;
+    }
+  
+    .about-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .about-container p {
+      font-size: 1rem;
+    }
+  }
+  
