@@ -35,7 +35,7 @@
         {% endfor %}
       {% endif %}
 
-      <form method="post" autocomplete="off" onsubmit="return validatePasswords()">
+      <form action="" method="post" autocomplete="off" onsubmit="return validatePasswords()">
         {% csrf_token %}
         <div class="form-group mb-3">
           <input type="text" class="form-control" name="username" placeholder="Username" required autocomplete="new-username">
