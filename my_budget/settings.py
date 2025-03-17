@@ -30,8 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if not 'ON_HEROKU' in os.environ:
-    DEBUG = True
+
 
 
 ALLOWED_HOSTS = ["*"]
@@ -105,7 +104,8 @@ else:
         }
     }
 
-
+if not 'ON_HEROKU' in os.environ:
+    DEBUG = True
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -144,7 +144,8 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
+LOGIN_REDIRECT_URL = "expenses"
+LOGOUT_REDIRECT_URL = "login"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main_app/static'),
