@@ -67,15 +67,30 @@
 
 
     <!-- Chart Section -->
-   <!-- Chart Section -->
-   <div class="chart-container mt-5">
-    <h5 class="text-center mb-3">Monthly Expenses Overview</h5>
-    <canvas id="expenseChart" height="150"></canvas>
+  <!-- Chart Section -->
+  <div class="chart-container mt-5">
+    <h5 class="text-center mb-3">Monthly Salary vs Expenses</h5>
+    <canvas id="lineChart"
+    data-labels="{{ chart_labels|safe }}"
+    data-expenses="{{ chart_expenses|safe }}"
+    data-salaries="{{ chart_salaries|safe }}"
+    height="200">
+  </canvas>
   
-    <!-- Safely pass JSON data to JavaScript -->
-    {{ chart_labels|json_script:"labels-data" }}
-    {{ chart_data|json_script:"values-data" }}
+
+
+  
+    <!-- Inject safe JSON data -->
+    {{ chart_labels|json_script:"chart-labels" }}
+    {{ chart_expenses|json_script:"chart-expenses" }}
+    {{ chart_salaries|json_script:"chart-salaries" }}
   </div>
+  
+  
+  
+  
+  
+  
   
 
   <!-- Debug output (optional, remove in production) -->
@@ -89,9 +104,10 @@
 
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Your custom chart logic -->
 <script src="{% static 'js/chart.js' %}"></script>
+
+
+
 
 
 {% endblock %}

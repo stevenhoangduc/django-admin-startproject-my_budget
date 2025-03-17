@@ -219,6 +219,14 @@ body.dark-mode select {
   border: 1px solid #888;
 }
 
+.chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+
+
 /* DARK MODE ENDS */
 
 

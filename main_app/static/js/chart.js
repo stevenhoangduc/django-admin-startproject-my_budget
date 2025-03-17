@@ -1,41 +1,59 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const canvas = document.getElementById('expenseChart');
+    const canvas = document.getElementById('lineChart');
     if (!canvas) return;
   
     try {
-      const labels = JSON.parse(document.getElementById('labels-data').textContent);
-      const values = JSON.parse(document.getElementById('values-data').textContent);
+      const labels = JSON.parse(canvas.dataset.labels);
+      const expenses = JSON.parse(canvas.dataset.expenses);
+      const salaries = JSON.parse(canvas.dataset.salaries);
   
-      console.log("Raw labels:", labels);
-      console.log("Raw values:", values);
+      console.log("Labels:", labels);
+      console.log("Expenses:", expenses);
+      console.log("Salaries:", salaries);
   
       new Chart(canvas, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: labels,
-          datasets: [{
-            label: 'Monthly Expenses ($)',
-            data: values,
-            backgroundColor: 'rgba(203, 32, 52, 0.7)',
-            borderRadius: 6,
-            borderSkipped: false
-          }]
+          datasets: [
+            {
+              label: 'Expenses ($)',
+              data: expenses,
+              borderColor: 'rgba(220, 53, 69, 0.9)',
+              backgroundColor: 'rgba(220, 53, 69, 0.1)',
+              tension: 0.3,
+              fill: true,
+            },
+            {
+              label: 'Salary ($)',
+              data: salaries,
+              borderColor: 'rgba(25, 135, 84, 0.9)',
+              backgroundColor: 'rgba(25, 135, 84, 0.1)',
+              tension: 0.3,
+              fill: true,
+            }
+          ]
         },
         options: {
           responsive: true,
           plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  return `$${context.parsed.y.toFixed(2)}`;
-                }
-              }
+            legend: {
+              position: 'top',
             }
           },
           scales: {
             y: {
-              beginAtZero: true
+              beginAtZero: true,
+              ticks: {
+                stepSize: 100 // 👈 Y-axis increments by 100
+              },
+              title: {
+                display: true,
+                text: 'Amount ($)',
+                font: {
+                  size: 14
+                }
+              }
             }
           }
         }

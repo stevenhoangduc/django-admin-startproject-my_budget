@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from .models import Expense
 from django.http import HttpResponse
 from django.utils import timezone
-from django.db.models.functions import TruncMonth
+
+from django.db.models.functions import TruncWeek
 from django.db.models import Sum
 from django.utils.dateformat import DateFormat
 
@@ -38,52 +39,32 @@ def expenses(request):
 
     total_sum = sum(expense.price for expense in queryset)
 
-   
+    # Group by week
+    weekly_data = (
+    Expense.objects.filter(user=request.user)
+    .annotate(week=TruncWeek('created_at'))
+    .values('week')
+    .annotate(total_expenses=Sum('price'), total_salary=Sum('salary'))
+    .order_by('week')
+)
 
-    print("=== RAW CREATED_AT VALUES ===")
-    for e in Expense.objects.filter(user=request.user).order_by('created_at'):
-        print(f"{e.name} => {e.created_at}")
-    print("==== END RAW DATES ====")
-
-    print("=== ALL EXPENSES (NO USER FILTER) ===")
-    
-    for e in Expense.objects.all().order_by('created_at'):
-        print(f"{e.user} | {e.name} => {e.created_at}")
-
-
-
-
-    # Bar Chart Data
-    monthly_totals = (
-        Expense.objects.filter(user=request.user)
-        .annotate(month=TruncMonth('created_at'))
-        .values('month')
-        .annotate(total=Sum('price'))
-        .order_by('month')
-    )
-
-    chart_labels = [DateFormat(item['month']).format('F') for item in monthly_data]
-    chart_expenses = [item['total_expenses'] for item in monthly_data]
-    chart_salaries = [item['total_salary'] for item in monthly_data]
-
-
-
-    print("==== DEBUG MONTHS ====")
-    for item in monthly_totals:
-        print("Month:", item['month'], "Total:", item['total'])
-
-
-    chart_labels = [DateFormat(item['month']).format('F') for item in monthly_totals]
-    chart_data = [item['total'] for item in monthly_totals]
+    # Format the weeks like "Mar 04"
+    chart_labels = [DateFormat(item['week']).format('M d') for item in weekly_data]
+    chart_expenses = [item['total_expenses'] for item in weekly_data]
+    chart_salaries = [item['total_salary'] for item in weekly_data]
 
     context = {
-        'expenses': queryset,
-        'total_sum': total_sum,
-        'chart_labels': chart_labels,
-        'chart_expenses': chart_expenses,
-        'chart_salaries': chart_salaries,
+    'expenses': queryset,
+    'total_sum': total_sum,
+    'chart_labels': chart_labels,
+    'chart_expenses': chart_expenses,
+    'chart_salaries': chart_salaries,
 }
 
+
+    print("Chart Labels:", chart_labels)
+    print("Chart Expenses:", chart_expenses)
+    print("Chart Salaries:", chart_salaries)
 
     return render(request, 'expenses.html', context)
 
