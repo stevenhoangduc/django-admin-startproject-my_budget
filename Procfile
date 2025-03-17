@@ -1,1 +1,1 @@
-web: gunicorn my_buget.wsgi.application
+web: gunicorn my_budget.wsgi.application
