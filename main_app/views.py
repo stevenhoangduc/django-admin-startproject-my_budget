@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -124,7 +125,8 @@ def register_page(request):
         user_obj.set_password(password)
         user_obj.save()
         messages.success(request, "Account created")
-        return redirect('/login')
+        login(request, user_obj)
+        return redirect('expenses')
 
     return render(request, "register.html")
 
