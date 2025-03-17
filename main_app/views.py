@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.db.models.functions import TruncWeek
 from django.db.models import Sum
 from django.utils.dateformat import DateFormat
+from django.contrib.auth.forms import UserCreationForm
 
 
 def about(request):
@@ -113,22 +114,26 @@ def login_page(request):
 
 
 def register_page(request):
+    # view functions can handle multiple http requests
+    error_message = ''
+    # handle the post request (submission of the form)
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        # create a user form object that includes the data from the submitted form
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            # save the form and create the user 
+            # adds a row to the user table
+            user = form.save()
+            # login in the user 
+            login(request, user)
+            # this creates the request.user ^ in all our view functions
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username is taken")
-            return redirect('/register/')
-
-        user_obj = User.objects.create(username=username)
-        user_obj.set_password(password)
-        user_obj.save()
-        messages.success(request, "Account created")
-        login(request, user_obj)
-        return redirect('expenses')
-
-    return render(request, "register.html")
+            return redirect('expenses') # cats-index is the name of a path in urls.py
+        else: 
+            error_message = "Invalid sign up - try again"
+    # handling the get request 
+    form = UserCreationForm()
+    return render(request, 'register.html', {'form': form, 'error_message': error_message})
 
 
 def custom_logout(request):

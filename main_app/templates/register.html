@@ -34,34 +34,16 @@
           </div>
         {% endfor %}
       {% endif %}
-
+      {% if error_message %}
+      <p class="red-text">{{ error_message }}</p>
+    {% endif %}
       <form action="" method="post" autocomplete="off" onsubmit="return validatePasswords()">
         {% csrf_token %}
-        <div class="form-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Username" required autocomplete="new-username">
-        </div>
-
-        <!-- Password Field -->
-        <div class="form-group mb-3">
-          <input type="password" class="form-control" name="password" id="passwordField" placeholder="Password" required autocomplete="new-password">
-        </div>
-
-        <!-- Confirm Password Field -->
-        <div class="form-group mb-3">
-          <input type="password" class="form-control" id="confirmPasswordField" placeholder="Confirm Password" required autocomplete="new-password">
-        </div>
+  
 
         <!-- Show Password Toggle -->
-        <div class="form-group form-check mb-4">
-          <!--includes your styled-checkbox class -->
-          <input type="checkbox" class="form-check-input styled-checkbox" id="togglePassword">
 
-
-          <label class="form-check-label" for="togglePassword">Show Passwords</label>
-        </div>
-
-        <!-- Error message placeholder -->
-        <p id="passwordError" class="text-danger text-center mb-3" style="display: none;">Passwords do not match</p>
+       {{form}}
 
         <button type="submit" class="btn btn-neutral w-100">Sign Up</button>
       </form>
