@@ -4,6 +4,9 @@ My Budget is a Dango-based web application that helps users manage their persona
 
 The project uses authentication and CRUD operations to create, read, update and elete expenses assigned to a user.
 
+Click here to view.
+https://my-budget-app-242e0420fc68.herokuapp.com/
+
 ## 📷 Screenshots 
 
 ![login](<screenshots/Screenshot 2025-03-17 at 9.18.00 PM.png>)
