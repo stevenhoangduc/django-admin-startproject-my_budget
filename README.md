@@ -22,14 +22,14 @@ The project uses authentication and CRUD operations to create, read, update and 
 * Add Notes to Transactions
 * Dashboard Summary (Income vs Expenses)
 
-#### 🧱 Tech Stack
+### 🧱 Tech Stack
 
 * Backend: Django (Python)
 * Frontend: Django Templates + HTML/CSS(Tailwind or Bootstrap suggested)
 * Database: SQLite (default), can switch to PostgreSQL
 * Charting: Chart.js (optional for dashboard visuals)
 
-##### ⚙️ Getting a Started
+### ⚙️ Getting a Started
 
 1. Clone the repo
 
@@ -58,14 +58,15 @@ The project uses authentication and CRUD operations to create, read, update and 
 
     * python3 manage.py createsuperuser
 
-###### 🧠 Future Ideas
+### 🧠 Future Ideas
 
-    * Monthly budget alerts
-    * Bank API intergrations
-    * Expense predictions
-    * Chart/graph display
+* Monthly budget alerts
+* Bank API intergrations
+* Expense predictions
+* Chart/graph display
 
-####### Author
+### 👨‍💻 Author
+
 Made by Steven Hoang Duc
 
 
